@@ -26,7 +26,14 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-FUZZY_THRESHOLD = 85  # similarity score to flag as duplicate
+# 85 balances catching real dupes (e.g. "Kitchen Timer Countdown Reminder" vs
+# "Kitchen Timer Countdown Cooking") without false-flagging unrelated products.
+# Tested 80 (too many false positives) and 90 (missed obvious dupes).
+FUZZY_THRESHOLD = 85
+
+# Columns with >70% nulls add noise — they only exist in a few source files
+# and aren't useful for a unified dataset. We log them in the report, then drop.
+DROP_THRESHOLD = 0.70
 
 
 # ---------------------------------------------------------------------------
@@ -297,16 +304,31 @@ def run_pipeline():
     df = standardize_data_types(df)
     print(f"  Columns after standardization: {list(df.columns)}")
 
-    # Step 4: Missing values
-    print("\n[4/5] Handling missing values...")
+    # Step 4: Drop near-empty columns
+    print("\n[4/6] Dropping columns with >70% missing data...")
+    dropped_cols = []
+    for col in df.columns:
+        if col in ("_source_file", "source_file", "category"):
+            continue
+        pct_null = df[col].isna().mean()
+        if pct_null > DROP_THRESHOLD:
+            dropped_cols.append((col, round(pct_null * 100, 1)))
+    if dropped_cols:
+        df = df.drop(columns=[c for c, _ in dropped_cols])
+        for col, pct in dropped_cols:
+            print(f"  Dropped '{col}' ({pct}% null)")
+    print(f"  Columns remaining: {len(df.columns)}")
+
+    # Step 5: Handle remaining missing values
+    print("\n[5/6] Handling missing values...")
     df, missing_report = handle_missing_values(df)
     for col, info in list(missing_report.items())[:10]:
         print(f"  {col}: {info['pct']}% missing -> {info['action']}")
     if len(missing_report) > 10:
         print(f"  ... and {len(missing_report) - 10} more columns")
 
-    # Step 5: Deduplication
-    print("\n[5/5] Detecting duplicates...")
+    # Step 6: Deduplication
+    print("\n[6/6] Detecting duplicates...")
     # Use product_name if available, otherwise try the first text-like column
     name_col = "product_name"
     if name_col not in df.columns:
@@ -340,6 +362,7 @@ def run_pipeline():
         "fuzzy_duplicate_groups": len(dup_groups),
         "sample_duplicates": dup_groups[:10],
         "source_file_distribution": source_summary,
+        "columns_dropped": dropped_cols,
     }
 
     return df, report
