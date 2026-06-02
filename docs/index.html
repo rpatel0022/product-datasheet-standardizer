@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Datasheet Standardizer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        .hero { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid #334155; padding: 3rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.2rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.5rem; }
+        .hero p { font-size: 1.1rem; color: #94a3b8; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin: 2rem 0; }
+        .stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; text-align: center; }
+        .stat-card .number { font-size: 2rem; font-weight: 700; color: #38bdf8; }
+        .stat-card .label { font-size: 0.85rem; color: #94a3b8; margin-top: 0.3rem; }
+        .section { margin: 2.5rem 0; }
+        .section h2 { font-size: 1.4rem; font-weight: 600; color: #f8fafc; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #38bdf8; display: inline-block; }
+        .pipeline-steps { display: grid; gap: 1rem; margin-top: 1rem; }
+        .step { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 1.2rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .step-num { background: #38bdf8; color: #0f172a; font-weight: 700; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
+        .step-content h3 { font-size: 1rem; color: #f8fafc; margin-bottom: 0.3rem; }
+        .step-content p { font-size: 0.9rem; color: #94a3b8; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th { background: #1e293b; color: #38bdf8; text-align: left; padding: 0.8rem 1rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        td { padding: 0.7rem 1rem; border-bottom: 1px solid #1e293b; font-size: 0.9rem; }
+        tr:nth-child(even) { background: #1e293b40; }
+        .tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+        .tag-high { background: #dc262620; color: #f87171; border: 1px solid #dc262640; }
+        .tag-med { background: #f59e0b20; color: #fbbf24; border: 1px solid #f59e0b40; }
+        .tag-ok { background: #22c55e20; color: #4ade80; border: 1px solid #22c55e40; }
+        .categories { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .cat-chip { background: #1e293b; border: 1px solid #334155; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; color: #cbd5e1; }
+        .tech-stack { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
+        .tech { background: #38bdf810; border: 1px solid #38bdf830; padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.85rem; color: #38bdf8; font-weight: 500; }
+        .dupes-list { margin-top: 1rem; }
+        .dupe-item { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 1rem; margin-bottom: 0.8rem; }
+        .dupe-item .names { font-size: 0.85rem; color: #cbd5e1; }
+        .dupe-item .score { font-size: 0.8rem; color: #38bdf8; margin-top: 0.3rem; }
+        .bar-chart { margin-top: 1rem; }
+        .bar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+        .bar-label { width: 200px; font-size: 0.8rem; color: #94a3b8; text-align: right; flex-shrink: 0; }
+        .bar-track { flex: 1; background: #1e293b; border-radius: 6px; height: 24px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #818cf8); border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 0.75rem; font-weight: 600; color: #0f172a; min-width: 40px; }
+        .footer { text-align: center; padding: 2rem; color: #475569; font-size: 0.85rem; border-top: 1px solid #1e293b; margin-top: 2rem; }
+        .footer a { color: #38bdf8; text-decoration: none; }
+        @media (max-width: 600px) { .hero h1 { font-size: 1.6rem; } .bar-label { width: 120px; } }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Product Datasheet Standardizer</h1>
+        <p>Takes 80,000+ messy product records from 21 different source files and produces a single clean, unified dataset with fuzzy deduplication and quality reporting.</p>
+    </div>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number">21</div>
+                <div class="label">Source Files Merged</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">82,105</div>
+                <div class="label">Raw Rows Input</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">71,481</div>
+                <div class="label">Clean Rows Output</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">10,624</div>
+                <div class="label">Duplicates Removed</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">~400</div>
+                <div class="label">Fuzzy Duplicate Groups</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Pipeline Steps</h2>
+            <div class="pipeline-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>Load &amp; Merge</h3>
+                        <p>Load 21 CSV files with different schemas, detect schema differences, and merge into a unified DataFrame.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>Standardize Columns</h3>
+                        <p>Normalize column names (lowercase, underscores), resolve synonyms (e.g., "goods_title_link" &rarr; "product_name"), extract categories from filenames.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Clean Data Types</h3>
+                        <p>Strip currency symbols from prices, convert to float. Coalesce full and short product names. Standardize text fields.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h3>Handle Missing Values</h3>
+                        <p>Median fill for numeric columns (&lt;30% missing), "Unknown" for categorical (&lt;50%), flag-only for high-null columns.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h3>Fuzzy Deduplication</h3>
+                        <p>Uses rapidfuzz token sort ratio (threshold: 85) to detect near-duplicate product names. Removes exact duplicates first, then identifies fuzzy groups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Schema Differences Detected</h2>
+            <p style="color:#94a3b8; margin-bottom:1rem;">All 21 files had different column sets. The pipeline detects and reports what each file is missing.</p>
+            <table>
+                <thead><tr><th>Column</th><th>Missing %</th><th>Action Taken</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>product_name</td><td>0.02%</td><td>Filled with "Unknown"</td><td><span class="tag tag-ok">OK</span></td></tr>
+                    <tr><td>price</td><td>0.0%</td><td>Filled with median</td><td><span class="tag tag-ok">OK</span></td></tr>
+                    <tr><td>discount</td><td>33.0%</td><td>Filled with "Unknown"</td><td><span class="tag tag-med">MEDIUM</span></td></tr>
+                    <tr><td>selling_proposition</td><td>33.8%</td><td>Filled with "Unknown"</td><td><span class="tag tag-med">MEDIUM</span></td></tr>
+                    <tr><td>color_count</td><td>76.0%</td><td>Left as NaN</td><td><span class="tag tag-high">HIGH</span></td></tr>
+                    <tr><td>rank</td><td>82.2%</td><td>Left as NaN</td><td><span class="tag tag-high">HIGH</span></td></tr>
+                    <tr><td>product_url</td><td>99.2%</td><td>Left as NaN</td><td><span class="tag tag-high">HIGH</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Category Distribution</h2>
+            <div class="bar-chart">
+                <div class="bar-row"><div class="bar-label">Baby &amp; Maternity</div><div class="bar-track"><div class="bar-fill" style="width:100%">4,302</div></div></div>
+                <div class="bar-row"><div class="bar-label">Shoes</div><div class="bar-track"><div class="bar-fill" style="width:95.8%">4,125</div></div></div>
+                <div class="bar-row"><div class="bar-label">Bags &amp; Luggage</div><div class="bar-track"><div class="bar-fill" style="width:95.4%">4,105</div></div></div>
+                <div class="bar-row"><div class="bar-label">Kids</div><div class="bar-track"><div class="bar-fill" style="width:92.3%">3,969</div></div></div>
+                <div class="bar-row"><div class="bar-label">Electronics</div><div class="bar-track"><div class="bar-fill" style="width:91.8%">3,949</div></div></div>
+                <div class="bar-row"><div class="bar-label">Pet Supplies</div><div class="bar-track"><div class="bar-fill" style="width:88.3%">3,799</div></div></div>
+                <div class="bar-row"><div class="bar-label">Beauty &amp; Health</div><div class="bar-track"><div class="bar-fill" style="width:88%">3,785</div></div></div>
+                <div class="bar-row"><div class="bar-label">Womens Clothing</div><div class="bar-track"><div class="bar-fill" style="width:84.8%">3,648</div></div></div>
+                <div class="bar-row"><div class="bar-label">Mens Clothes</div><div class="bar-track"><div class="bar-fill" style="width:37.9%">1,631</div></div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Sample Fuzzy Duplicates Found</h2>
+            <div class="dupes-list">
+                <div class="dupe-item">
+                    <div class="names">"1pc Stainless Steel Visual Kitchen Timer With Magnetic Back <strong>Countdown Reminder</strong> For Cooking Baking Alarm Clock"<br>vs<br>"1pc Stainless Steel Visual Kitchen Timer With Magnetic Back, <strong>Countdown Cooking Timer</strong> Alarm Clock For Time Management Reminder"</div>
+                    <div class="score">Similarity: 87.2%</div>
+                </div>
+                <div class="dupe-item">
+                    <div class="names">"Manfinity Homme Men's <strong>Contrast Color Short Sleeve</strong> Polo Shirt"<br>vs<br>"Manfinity Homme Men's <strong>Contrast Color Trim</strong> Polo Shirt"</div>
+                    <div class="score">Similarity: 85.7%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tech Stack</h2>
+            <div class="tech-stack">
+                <span class="tech">Python</span>
+                <span class="tech">pandas</span>
+                <span class="tech">rapidfuzz</span>
+                <span class="tech">NumPy</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://github.com/rpatel0022/product-datasheet-standardizer">View Source on GitHub</a>
+    </div>
+</body>
+</html>
