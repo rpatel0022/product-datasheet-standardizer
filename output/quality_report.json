@@ -1,0 +1,331 @@
+{
+  "files_loaded": 21,
+  "total_rows_raw": 82105,
+  "total_rows_clean": 71481,
+  "columns": [
+    "price",
+    "discount",
+    "selling_proposition",
+    "product_name",
+    "source_file",
+    "category"
+  ],
+  "schema_differences": [
+    {
+      "file": "us-shein-appliances-3987.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-automotive-4110.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "product-locatelabels-img src",
+        "rank-sub",
+        "rank-title"
+      ]
+    },
+    {
+      "file": "us-shein-baby_and_maternity-4433.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src",
+        "rank-sub",
+        "rank-title"
+      ]
+    },
+    {
+      "file": "us-shein-bags_and_luggage-4299.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-beauty_and_health-4267.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-curve-2849.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-electronics-4395.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-home_and_kitchen-3719.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "goods-title-link--jump",
+        "goods-title-link--jump href",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-home_textile-3883.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-jewelry_and_accessories-3548.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-kids-4314.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-mens_clothes-1891.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "goods-title-link--jump",
+        "goods-title-link--jump href",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-office_and_school_supplies-4233.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-pet_supplies-4083.csv",
+      "missing_columns": [
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-shoes-4381.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-sports_and_outdoors-3853.csv",
+      "missing_columns": [
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-swimwear-3761.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src",
+        "selling_proposition"
+      ]
+    },
+    {
+      "file": "us-shein-tools_and_home_improvement-3903.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-toys_and_games-3577.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "color-count",
+        "goods-title-link--jump",
+        "goods-title-link--jump href",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-underwear_and_sleepwear-4019.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "product-locatelabels-img src"
+      ]
+    },
+    {
+      "file": "us-shein-womens_clothing-4620.csv",
+      "missing_columns": [
+        "blackfridaybelts-bg src",
+        "blackfridaybelts-content",
+        "goods-title-link--jump",
+        "goods-title-link--jump href"
+      ]
+    }
+  ],
+  "missing_value_actions": {
+    "price": {
+      "count": 2,
+      "pct": 0.0,
+      "action": "filled_median"
+    },
+    "discount": {
+      "count": 27128,
+      "pct": 33.04,
+      "action": "filled_unknown"
+    },
+    "selling_proposition": {
+      "count": 27741,
+      "pct": 33.79,
+      "action": "filled_unknown"
+    },
+    "product_name": {
+      "count": 14,
+      "pct": 0.02,
+      "action": "filled_unknown"
+    }
+  },
+  "fuzzy_duplicate_groups": 412,
+  "sample_duplicates": [
+    {
+      "names": [
+        "DAZY Solid Rib Knit Thermal Underwear Vest",
+        "Dazy Star Solid Rib Knit Thermal Underwear Vest"
+      ],
+      "score": 87.64044943820225
+    },
+    {
+      "names": [
+        "SHEIN Swim Basics Summer Beach Solid Tie Front Wide Leg Cover Up Pants",
+        "SHEIN Swim Basics Summer Beach Solid Tie Front Wide Leg Cover Up Pants"
+      ],
+      "score": 100.0
+    },
+    {
+      "names": [
+        "SHEIN Swim Mod Summer Beach Random Floral Print Bikini Set Smocked Halter Triangle Bra Top & Tie Side Bikini Bottom 2 Piece Swimsuit",
+        "SHEIN Swim Mod Summer Beach Random Floral Print Bikini Set Smocked Halter Triangle Bra Top & Tie Side Bikini Bottom 2 Piece Swimsuit",
+        "SHEIN X Hangout Fest SHEIN Swim Mod Summer Beach Random Floral Print Bikini Set Smocked Halter Triangle Bra Top & Tie Side Bikini Bottom 2 Piece Swimsuit",
+        "SHEIN X Hangout Fest SHEIN Swim Mod Summer Beach Random Floral Print Bikini Set Smocked Halter Triangle Bra Top & Tie Side Bikini Bottom 2 Piece Swimsuit"
+      ],
+      "score": 100.0
+    },
+    {
+      "names": [
+        "2 pcs Badge Holder and 2 pcs Heavy Duty Retractable Reel, ID Badge Holders with Retractable Reel Clip for Nurse Teacher Student Office Women Men",
+        "2 pcs Badge Holder and 2 pcs Heavy Duty Retractable Reel, ID Badge Holders withRetractable Reel Clip for Nurse Teacher Student Office Women Men"
+      ],
+      "score": 91.98606271777004
+    },
+    {
+      "names": [
+        "1pc Wooden Soap Dish for Shower, Shower Soap Holder, Self draining Bar Soap Holder for Bathroom, Soap Saver Soap Tray Soap Stand for Homemade Soap",
+        "1pc Wooden Soap Dish for Shower, Shower Soap Holder, Self draining Bar Soap Holder for Bathroom, Soap Saver Soap Tray Soap Stand for Homemade Soap"
+      ],
+      "score": 100.0
+    },
+    {
+      "names": [
+        "Retro Lightweight,Business Casual Black Flap Bag Vintage Knot Detail PU For Teen Girls Women College Students,Rookies & White-Collar Workers Perfect For Office,College,Work ,Business,Commute,Outdoors, Travel, Outings",
+        "Retro Lightweight,Business Casual Chocolate Brown Flap Bag Vintage PU For Teen Girls Women College Students,Rookies & White-Collar Workers Perfect For Office,College,Work ,Business,Commute,Outdoors, Travel, Outings",
+        "Lightweight,Business Casual Floral Embroidery Bag For Teen Girls Women College Students,Rookies & White-Collar Workers Perfect For Office,College,Work ,Business,Commute,Outdoors, Travel, Outings",
+        "Lightweight,Business Casual Mini Buckle Decor Flap Crossbody Bag For Teen Girls Women College Students,Rookies & White-collar Workers Perfect for Office,College,Work ,Business,Commute,Outdoors, Travel, Outings",
+        "Lightweight,Business Casual Heart Decor Snap Button Square Bag For Teen Girls Women College Students,Rookies & White-collar Workers Perfect for Office,College,Work ,Business,Commute,Outdoors, Travel, Outings"
+      ],
+      "score": 93.02325581395348
+    },
+    {
+      "names": [
+        "Men Contrast Piping PJ Set",
+        "Men Contrast Piping PJ Set",
+        "Men Contrast Piping Satin PJ Set"
+      ],
+      "score": 100.0
+    },
+    {
+      "names": [
+        "Manfinity Homme Men Single Striped Trim Polo Shirt",
+        "Manfinity Homme Men Striped Trim Polo Shirt"
+      ],
+      "score": 92.47311827956989
+    },
+    {
+      "names": [
+        "1 Pc Compact Portable Mini Daisy Candy Air Cushion Comb,Detangling Hair Brush With Handle,Styling&Hairdressing Tool,Hair Care,Girl Gift(Pink)",
+        "1 Pc Compact Portable Mini Daisy Candy Air Cushion Comb,Detangling Hair Brush With Handle,Styling&Hairdressing Tool,Hair Care,Girl Gift(Blue)"
+      ],
+      "score": 97.16312056737588
+    },
+    {
+      "names": [
+        "Checkered Pattern Makeup Bag, 1Pc Exquisite Solid Color Minimalist Minimalist Solid Color Plush Cosmetic Bag Style Hairy Zipper Toiletries Storage Bag Black Friday,Makeup Bag Makeup Pouch Skincare Bag Toiletry Bag Packing Cubes,Travel Essentials Cruise Essentials Dorm Essentials,Wedding Bridesmaid Gifts,Mom Gifts,Birthday Gifts,Gifts For Friends And Teachers,Home Decor,Bathroom Livingroom Bedroom Decor,Bathroom Organizer,Jewelry Organizer,Lip Oil Organizer,Nail Polish Organizer Storage Makeup Organizer Makeup Case",
+        "1Pc Large Capacity Nylon Waterproof Travel Toiletry Bag Multi-Functional Soft Cosmetic Bag Black Friday,Makeup Bag Makeup Pouch Skincare Bag Toiletry Bag Packing Cubes,Travel Essentials Cruise Essentials Dorm Essentials,Wedding Bridesmaid Gifts,Mom Gifts,Birthday Gifts,Gifts For Friends And Teachers,Home Decor,Bathroom Livingroom Bedroom Decor,Bathroom Organizer,Jewelry Organizer,Lip Oil Organizer,Nail Polish Organizer Makeup Bag Storage Makeup Organizer Makeup Case",
+        "1Pc Large Capacity Nylon Waterproof Travel Toiletry Bag Multi-Functional Soft Cosmetic Bag Black Friday,Makeup Bag Makeup Pouch Skincare Bag Toiletry Bag Packing Cubes,Travel Essentials Cruise Essentials Dorm Essentials,Wedding Bridesmaid Gifts,Mom Gifts,Birthday Gifts,Gifts For Friends And Teachers,Home Decor,Bathroom Livingroom Bedroom Decor,Bathroom Organizer,Jewelry Organizer,Lip Oil Organizer,Nail Polish Organizer Makeup Bag Storage Makeup Organizer Makeup Case"
+      ],
+      "score": 86.5520728008089
+    }
+  ],
+  "source_file_distribution": {},
+  "columns_dropped": [
+    [
+      "product_url",
+      99.2
+    ],
+    [
+      "rank",
+      82.2
+    ],
+    [
+      "rank_detail",
+      82.2
+    ],
+    [
+      "color_count",
+      76.0
+    ],
+    [
+      "blackfridaybelts_bg_src",
+      95.4
+    ],
+    [
+      "blackfridaybelts_content",
+      95.4
+    ],
+    [
+      "product_locatelabels_img_src",
+      95.6
+    ]
+  ]
+}
