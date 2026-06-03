@@ -73,6 +73,10 @@
                 <div class="label">Duplicates Removed</div>
             </div>
             <div class="stat-card">
+                <div class="number">7</div>
+                <div class="label">Junk Columns Dropped</div>
+            </div>
+            <div class="stat-card">
                 <div class="number">~400</div>
                 <div class="label">Fuzzy Duplicate Groups</div>
             </div>
@@ -105,12 +109,19 @@
                 <div class="step">
                     <div class="step-num">4</div>
                     <div class="step-content">
-                        <h3>Handle Missing Values</h3>
-                        <p>Median fill for numeric columns (&lt;30% missing), "Unknown" for categorical (&lt;50%), flag-only for high-null columns.</p>
+                        <h3>Drop Junk Columns</h3>
+                        <p>Columns with &gt;70% null data only existed in a few source files. Drop them to keep the unified dataset clean (7 columns removed).</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-num">5</div>
+                    <div class="step-content">
+                        <h3>Handle Missing Values</h3>
+                        <p>Median fill for price, "Unknown" for categorical fields (discount, selling_proposition). Only 4 columns need treatment after dropping junk.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">6</div>
                     <div class="step-content">
                         <h3>Fuzzy Deduplication</h3>
                         <p>Uses rapidfuzz token sort ratio (threshold: 85) to detect near-duplicate product names. Removes exact duplicates first, then identifies fuzzy groups.</p>
@@ -120,18 +131,20 @@
         </div>
 
         <div class="section">
-            <h2>Schema Differences Detected</h2>
-            <p style="color:#94a3b8; margin-bottom:1rem;">All 21 files had different column sets. The pipeline detects and reports what each file is missing.</p>
+            <h2>Column Cleaning Decisions</h2>
+            <p style="color:#94a3b8; margin-bottom:1rem;">All 21 files had different schemas. Columns with &gt;70% null data were dropped as they only existed in a few source files.</p>
             <table>
                 <thead><tr><th>Column</th><th>Missing %</th><th>Action Taken</th><th>Status</th></tr></thead>
                 <tbody>
-                    <tr><td>product_name</td><td>0.02%</td><td>Filled with "Unknown"</td><td><span class="tag tag-ok">OK</span></td></tr>
-                    <tr><td>price</td><td>0.0%</td><td>Filled with median</td><td><span class="tag tag-ok">OK</span></td></tr>
-                    <tr><td>discount</td><td>33.0%</td><td>Filled with "Unknown"</td><td><span class="tag tag-med">MEDIUM</span></td></tr>
-                    <tr><td>selling_proposition</td><td>33.8%</td><td>Filled with "Unknown"</td><td><span class="tag tag-med">MEDIUM</span></td></tr>
-                    <tr><td>color_count</td><td>76.0%</td><td>Left as NaN</td><td><span class="tag tag-high">HIGH</span></td></tr>
-                    <tr><td>rank</td><td>82.2%</td><td>Left as NaN</td><td><span class="tag tag-high">HIGH</span></td></tr>
-                    <tr><td>product_url</td><td>99.2%</td><td>Left as NaN</td><td><span class="tag tag-high">HIGH</span></td></tr>
+                    <tr><td>product_name</td><td>0.02%</td><td>Filled with "Unknown"</td><td><span class="tag tag-ok">KEPT</span></td></tr>
+                    <tr><td>price</td><td>0.0%</td><td>Filled with median</td><td><span class="tag tag-ok">KEPT</span></td></tr>
+                    <tr><td>discount</td><td>33.0%</td><td>Filled with "Unknown"</td><td><span class="tag tag-ok">KEPT</span></td></tr>
+                    <tr><td>selling_proposition</td><td>33.8%</td><td>Filled with "Unknown"</td><td><span class="tag tag-ok">KEPT</span></td></tr>
+                    <tr><td>category</td><td>0.0%</td><td>Extracted from filename</td><td><span class="tag tag-ok">KEPT</span></td></tr>
+                    <tr><td style="color:#f87171">color_count</td><td>76.0%</td><td>Dropped (&gt;70% null)</td><td><span class="tag tag-high">DROPPED</span></td></tr>
+                    <tr><td style="color:#f87171">rank / rank_detail</td><td>82.2%</td><td>Dropped (&gt;70% null)</td><td><span class="tag tag-high">DROPPED</span></td></tr>
+                    <tr><td style="color:#f87171">product_url</td><td>99.2%</td><td>Dropped (&gt;70% null)</td><td><span class="tag tag-high">DROPPED</span></td></tr>
+                    <tr><td style="color:#f87171">blackfridaybelts_*</td><td>95.4%</td><td>Dropped (&gt;70% null)</td><td><span class="tag tag-high">DROPPED</span></td></tr>
                 </tbody>
             </table>
         </div>
